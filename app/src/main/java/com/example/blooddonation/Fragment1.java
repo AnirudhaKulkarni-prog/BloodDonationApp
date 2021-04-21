@@ -2,10 +2,15 @@ package com.example.blooddonation;
 
 
 import android.content.Intent;
+import android.media.MediaCodec;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,12 +46,20 @@ public class Fragment1 extends Fragment {
 
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
 
         add_receiver = getActivity().findViewById(R.id.receiver_request);
         receiverList = getActivity().findViewById(R.id.receiver_list);
+
+
 
 
         // Query
@@ -139,4 +152,76 @@ public class Fragment1 extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
+
+
+    /*public void OnCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView)menuItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                processSearch(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                processSearch(s);
+                return false;
+            }
+        });
+
+
+
+    }
+
+    private void processSearch(String s) {
+
+        // Query
+        Query q = FirebaseFirestore.getInstance().collection("Receiver").orderBy("Blood_Grp").startAt(s).endAt(s+"\uf8ff");
+
+
+        // Recycler Option
+        FirestoreRecyclerOptions<DemoModel> options = new FirestoreRecyclerOptions.Builder<DemoModel>()
+                .setQuery(q, DemoModel.class)
+                .build();
+
+
+
+        // RecyclerAdapter
+        adapter = new FirestoreRecyclerAdapter<DemoModel, ReceiverViewHolder>(options) {
+
+            @NonNull
+            @Override
+            public ReceiverViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                *//*View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_receiver, parent,false);*//*
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_receiver,parent,false);
+                return new ReceiverViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull ReceiverViewHolder holder, int i, @NonNull DemoModel demoModel) {
+
+                holder.list_name.setText(" Name : "+demoModel.getFull_Name());
+                holder.list_blood.setText(" Blood : "+demoModel.getBlood_Grp());
+                holder.list_phone.setText(demoModel.getPhone());
+                holder.list_reason.setText(" Reason : "+demoModel.getReason());
+                holder.list_city.setText(" City : "+demoModel.getCity());
+                holder.list_locality.setText(" Locality : "+demoModel.getLocality());
+            }
+        };
+
+        adapter.startListening();
+
+        receiverList.setAdapter(adapter);
+
+    }*/
+
 }

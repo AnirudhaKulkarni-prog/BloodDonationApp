@@ -3,9 +3,7 @@
     package="com.example.blooddonation">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -14,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Register"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -22,11 +21,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
-        <activity android:name=".Add_Donor"></activity>
+        <activity android:name=".Add_Donor" />
         <activity android:name=".Add_Receiver" />
         <activity android:name=".Login" />
-        <activity android:name=".Register">
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,10 +33,5 @@
         </activity>
         <activity android:name=".MainActivity" />
     </application>
-
-
-
-
-
 
 </manifest>

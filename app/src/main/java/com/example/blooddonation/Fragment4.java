@@ -36,6 +36,8 @@ public class Fragment4 extends Fragment {
     Button logout, deleteReceiver, deleteDonor;
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,6 +78,8 @@ public class Fragment4 extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String userId = user.getUid();
         final String Email = user.getEmail();
+
+        
 
 
         reference = firestore.collection("Users").document(userId);
